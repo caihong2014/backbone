@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="description" content="">
+	<title></title>
+	<meta charset="utf-8">
+	<script src="./js/lib/jquery.js"></script>
+	<script src="./js/lib/underscore.js"></script>
+	<script src="./js/lib/backbone.js"></script>
+	
+</head>
+<body>
+	<button id="abc">abc</button>
+	<button id="bcd">123</button>
+	<div style="width:200px;height:200px;background:gray" id="Jq">
+		<div style="width:100px;height:100px;background:blue" id="blue"></div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	var router = Backbone.Router.extend({
+		routes: {
+			"xxx":"abc"
+		},
+		abc:function(){
+			new TodoView({el:$("#Jq")});
+		}	
+	});	
+	
+	var TodoView = Backbone.View.extend({
+		events: {
+			"click #blue":"xyz"
+		},
+		xyz:function(){
+			alert(1)
+		},
+		initialize: function(){
+			console.log(this.$el);
+			this.$el.css({background:"red"});
+		//	$("#Jq").css({background:"red"});
+		}	
+	});
+	var Todo = Backbone.Model.extend({
+		
+	});
+	
+	new router();
+	 
+	Backbone.history.start();
+	
+	$("#abc").on('click',function(){
+		window.location.hash = 'xxx';
+	});
+	$("#bcd").on('click',function(){
+		window.location.hash = '';
+	});
+</script>
+</html>
