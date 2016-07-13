@@ -17,7 +17,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	//路由-控制器
+	//路由
 	var router = Backbone.Router.extend({
 		routes: {
 			"xxx":"abc"
@@ -28,11 +28,12 @@
 	});	
 	//视图
 	var TodoView = Backbone.View.extend({
+		//events 属性承担控制器的角色，定义了在视图DOM元素内发生的事件如何被路由到视图中所定义的事件处理方法上。
 		events: {
 			"click #blue":"xyz"
 		},
 		xyz:function(){
-			alert(1)
+			alert("1")
 		},
 		initialize: function(){
 			console.log(this.$el);
