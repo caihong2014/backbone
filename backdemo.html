@@ -15,9 +15,9 @@
 	<div style="width:200px;height:200px;background:gray" id="Jq">
 		<div style="width:100px;height:100px;background:blue" id="blue"></div>
 	</div>
-	
 </body>
 <script type="text/javascript">
+	//路由-控制器
 	var router = Backbone.Router.extend({
 		routes: {
 			"xxx":"abc"
@@ -26,7 +26,7 @@
 			new TodoView({el:$("#Jq")});
 		}	
 	});	
-	
+	//视图
 	var TodoView = Backbone.View.extend({
 		events: {
 			"click #blue":"xyz"
@@ -40,6 +40,7 @@
 		//	$("#Jq").css({background:"red"});
 		}	
 	});
+	//模型表示应用程序中的数据，通常用户管理与特定数据库交互的规则。通常一个表对应一个模型，应用程序中的大量业务逻辑都位于这些模型内
 	var Todo = Backbone.Model.extend({
 		
 	});
