@@ -10,51 +10,122 @@
 	
 </head>
 <body>
-	<button id="abc">abc</button>
+	<!-- <button id="abc">abc</button>
 	<button id="bcd">123</button>
 	<div style="width:200px;height:200px;background:gray" id="Jq">
 		<div style="width:100px;height:100px;background:blue" id="blue"></div>
-	</div>
+	</div> -->
 </body>
 <script type="text/javascript">
-	//路由
-	var router = Backbone.Router.extend({
-		routes: {
-			"xxx":"abc"
+	//模型
+	var model = Backbone.Model.extend({
+		defaults:{
+			name: '',
+			sex: '男'
 		},
-		abc:function(){
-			new TodoView({el:$("#Jq")});
-		}	
-	});	
+		initialize: function() {
+			console.log('1');
+			this.on('click', function() {
+				console.log('2');
+			});
+		}
+
+	});
+	//监听 
+	// setName: function(newName) {
+	// 	this.set({name: newName});
+	// },
+
+	var myModel = new model();
+	myModel.set('name', '翠花');
+	console.log('这个人叫' + myModel.get('name'));
+
 	//视图
-	var TodoView = Backbone.View.extend({
-		//events 属性承担控制器的角色，定义了在视图DOM元素内发生的事件如何被路由到视图中所定义的事件处理方法上。
+	var view = Backbone.View.extend({
+		tagName: 'div',
+		modelTpl: _.template('一个实例模板'),
 		events: {
-			"click #blue":"xyz"
+			'click div':'edit'
 		},
-		xyz:function(){
-			alert("1")
-		},
-		initialize: function(){
-			console.log(this.$el);
-			this.$el.css({background:"red"});
-		//	$("#Jq").css({background:"red"});
-		}	
+		edit: function() {
+			console.log('3');
+		}
+		// render: function() {
+		// 	this.$el.html( this.modelTpl( this.model.toJSON() ) );
+		// },
 	});
-	//模型表示应用程序中的数据，通常用户管理与特定数据库交互的规则。通常一个表对应一个模型，应用程序中的大量业务逻辑都位于这些模型内
-	var Todo = Backbone.Model.extend({
+	var view = new view();
+	console.log(view.el);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//路由
+	// var router = Backbone.Router.extend({
+	// 	routes: {
+	// 		"xxx":"abc"
+	// 	},
+	// 	abc:function(){
+	// 		new TodoView({el:$("#Jq")});
+	// 	}	
+	// });	
+	// //视图
+	// var TodoView = Backbone.View.extend({
+	// 	//events 属性承担控制器的角色，定义了在视图DOM元素内发生的事件如何被路由到视图中所定义的事件处理方法上。
+	// 	events: {
+	// 		"click #blue":"xyz"
+	// 	},
+	// 	xyz:function(){
+	// 		alert("1")
+	// 	},
+	// 	initialize: function(){
+	// 		console.log(this.$el);
+	// 		this.$el.css({background:"red"});
+	// 	//	$("#Jq").css({background:"red"});
+	// 	}	
+	// });
+	// //模型表示应用程序中的数据，通常用户管理与特定数据库交互的规则。通常一个表对应一个模型，应用程序中的大量业务逻辑都位于这些模型内
+	// var Todo = Backbone.Model.extend({
 		
-	});
+	// });
 	
-	new router();
+	// new router();
 	 
-	Backbone.history.start();
+	// Backbone.history.start();
 	
-	$("#abc").on('click',function(){
-		window.location.hash = 'xxx';
-	});
-	$("#bcd").on('click',function(){
-		window.location.hash = '';
-	});
+	// $("#abc").on('click',function(){
+	// 	window.location.hash = 'xxx';
+	// });
+	// $("#bcd").on('click',function(){
+	// 	window.location.hash = '';
+	// });
 </script>
 </html>
